@@ -63,7 +63,7 @@ export class UserService {
     async update(id: number, dto: UpdateUserDto): Promise<UserEntity> {
         const toUpdate = await this.userRepository.findOne(id);
         delete toUpdate.password;
-        delete toUpdate.favorites;
+        // delete toUpdate.favorites;
 
         const updated = Object.assign(toUpdate, dto);
         return await this.userRepository.save(updated);
@@ -98,7 +98,7 @@ export class UserService {
         return { user: userRO };
     }
 
-    private generateJWT(user) {
+    public generateJWT(user) {
         const now = new Date();
         const exp = new Date(now);
         exp.setDate(now.getDate() + 60);
