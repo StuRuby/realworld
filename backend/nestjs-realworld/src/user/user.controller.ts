@@ -7,6 +7,9 @@ import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { ApiUseTags, ApiBearerAuth } from '@nestjs/swagger';
 import { User } from './user.decorator';
 
+@ApiBearerAuth()
+@ApiUseTags('user')
+@Controller()
 export class UserController {
     constructor(private readonly userService: UserService) { }
     @Get('user')
