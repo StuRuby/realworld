@@ -9,7 +9,7 @@ import { validate } from 'class-validator';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { HttpStatus } from '@nestjs/common';
 import * as crypto from 'crypto';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
 // 通过`Injectable`注解一个类，使其变成一个提供者。
 @Injectable()
