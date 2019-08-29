@@ -22,13 +22,9 @@ export class AuthMiddleware implements NestMiddleware {
 
     async use(req: Request, res: Response, next: NextFunction) {
         const authHeaders = req.headers.authorization;
-        console.log(req.headers);
         if(authHeaders) {
-            // const token = authHeaders.split(' ')[1];
             const token = authHeaders;
-            console.log('Token', token);
             const decoded: any = jwt.verify(token, SECRET);
-            console.log(decoded, 'decoded');
             const user = await this.userService.findById(decoded.id);
 
             if(!user) {
