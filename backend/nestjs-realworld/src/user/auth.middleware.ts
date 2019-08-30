@@ -16,6 +16,7 @@ import { UserService } from './user.service';
  * 6.服务器验证完成后，发送响应结果给浏览器
  */
 
+// 告诉容器，这是需要依赖注入的，同时在构造函数中声明依赖，实例化时，依赖对象将会通过构造函数注入
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
     constructor(private readonly userService: UserService) { }
