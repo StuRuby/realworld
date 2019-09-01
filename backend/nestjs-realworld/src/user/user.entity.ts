@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 import { IsEmail } from 'class-validator';
 import * as crypto from 'crypto';
+import { ArticleEntity } from '../article/article.entity';
 
 @Entity('user')
 export class UserEntity {
@@ -30,5 +31,10 @@ export class UserEntity {
         this.password = crypto.createHmac('sha256', this.password).digest('hex');
     }
 
-    // TODO:设置`articleEntity`
+    @ManyToMany(type => ArticleEntity)
+    @JoinTable()
+    favorites: ArticleEntity[];
+
+    @OneToMany(type => ArticleEntity, article => article.author)
+    articles: ArticleEntity[];
 }
